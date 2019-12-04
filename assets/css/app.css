@@ -1,0 +1,27 @@
+/* Header */
+.navbar-brand span {
+    color: #39c082;
+}
+.navbar-nav .nav-link {
+    color: #333 !important;
+}
+.navbar-nav .nav-link:hover {
+    color: #666 !important;
+}
+/* Header */
+
+
+/* Main */
+.main {
+    margin-top: 100px;
+    min-height: 500px;
+}
+.btn {
+    margin-top: 32px;
+}
+.result {
+    margin-top: 30px;
+    font-size: 30px;
+    color: #655151;
+}
+/* Main */
