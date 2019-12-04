@@ -8,7 +8,10 @@
 
 namespace Base\Exception;
 
-
+/**
+ * Class NotTemplateException
+ * @package Base\Exception
+ */
 class NotTemplateException extends \Exception
 {
     public function __construct($message = '')

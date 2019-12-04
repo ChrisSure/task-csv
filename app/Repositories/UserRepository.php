@@ -11,19 +11,45 @@ namespace App\Repositories;
 use App\Entities\User;
 use Base\Pattern\ServiceLocator\App;
 
-
+/**
+ * Class UserRepository
+ * @package App\Repositories
+ */
 class UserRepository
 {
+    /**
+     * @var Base\Db\Pdo
+     */
     private $pdo;
+
+    /**
+     * @var array
+     */
     public $new = [];
+
+    /**
+     * @var array
+     */
     public $update = [];
+
+    /**
+     * @var array
+     */
     public $statistic = [];
 
+    /**
+     * UserRepository constructor.
+     */
     public function __construct()
     {
         $this->pdo = App::$serviceLocator->get('db');
     }
 
+    /**
+     * Finf one user
+     * @param $uid
+     * @return User|null
+     */
     public function find($uid): ?User
     {
         $stmt = $this->pdo->getConnect()->prepare('SELECT * FROM users WHERE uid = ?');
@@ -35,6 +61,10 @@ class UserRepository
         return null;
     }
 
+    /**
+     * Find all users
+     * @return array
+     */
     public function findAll(): array
     {
         $usersArray = [];
@@ -47,6 +77,9 @@ class UserRepository
         return $usersArray;
     }
 
+    /**
+     * Save users
+     */
     public function save(): void
     {
         $this->statistic['new'] = count($this->new);
@@ -65,6 +98,10 @@ class UserRepository
         }
     }
 
+    /**
+     * Remove users
+     * @param array $uidArray
+     */
     public function remove(array $uidArray): void
     {
         $arrayBase = $this->getUids();
@@ -79,6 +116,10 @@ class UserRepository
 
     }
 
+    /**
+     * Get uids users
+     * @return array
+     */
     private function getUids(): array
     {
         $arrayBase = [];

@@ -13,25 +13,30 @@ use Base\Exception\NotTemplateException;
 
 class PhpRenderer implements TemplateInterface
 {
-    //Маршрут збереження шаблонів
+    /**
+     * @var String
+     */
     private $path;
 
-    //Батьківський блок
+    /**
+     * @var
+     */
     private $extend;
 
-    //Массив блоків
+    /**
+     * @var array
+     */
     private $blocks = [];
 
-    //Стек блоків
+    /**
+     * @var \SplStack
+     */
     private $blockNames;
 
 
     /**
-     * Конструктор встановлює маршрут збереження шаблонів та ініціалізує стек збереження блоків
-     *
+     * PhpRenderer constructor.
      * @param String $path
-     *
-     * @return void
      */
     public function __construct(String $path)
     {
@@ -40,11 +45,9 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод генерує шаблон і ініціалізує перемінні
-     *
+     * Generate template and ibit various
      * @param String $name
      * @param array $params
-     *
      * @return string
      */
     public function render($name, array $params = []): string
@@ -72,10 +75,8 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод встановлює батьківський блок
-     *
+     * Set parent block
      * @param String $view
-     *
      * @return string
      */
     public function extend(String $view): void
@@ -84,11 +85,9 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод встановлює блок
-     *
+     * Set block
      * @param String $name
      * @param String $content
-     *
      * @return void
      */
     public function block(String $name, String $content): void
@@ -100,10 +99,8 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод перевіряє чи існує блок, якщо так - дає старт блоку і повертає істину
-     *
+     * Check if isset block and started it
      * @param String $name
-     *
      * @return bool
      */
     public function ensureBlock(String $name): bool
@@ -116,10 +113,8 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод відкриває початок блоку
-     *
+     * Open start block
      * @param String $name
-     *
      * @return void
      */
     public function startBlock(String $name): void
@@ -129,8 +124,7 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод закриває блок
-     *
+     * Clothe block
      * @return void
      */
     public function endBlock(): void
@@ -144,10 +138,8 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод рендерить блок
-     *
+     * Render block
      * @param String $name
-     *
      * @return string
      */
     public function renderBlock(String $name): string
@@ -160,10 +152,8 @@ class PhpRenderer implements TemplateInterface
     }
 
     /**
-     * Метод перевіряє чи існує блок
-     *
+     * Check if isset block
      * @param String $name
-     *
      * @return bool
      */
     private function hasBlock(String $name): bool
@@ -174,21 +164,13 @@ class PhpRenderer implements TemplateInterface
 
 
     /**
-     * Метод фільтрації перемінної через htmlspecialchars
-     *
+     * Filter htmlspecialchars
      * @param String $string
-     *
      * @return bool
      */
     public function encode(String $string): string
     {
         return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE);
     }
-
-
-    /*public function path($name, array $params = []): string
-    {
-        return $this->router->generate($name, $params);
-    }*/
 
 }

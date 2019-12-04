@@ -8,13 +8,25 @@
 
 namespace Base\Http;
 
-
+/**
+ * Class Response
+ * @package Base\Http
+ */
 class Response implements ResponseInterface
 {
+    /**
+     * @var string
+     */
     private $body;
 
+    /**
+     * @var int
+     */
     private $statusCode;
 
+    /**
+     * @var array
+     */
     private $reasonPhrase = [
         // INFORMATIONAL CODES
         100 => 'Continue',
@@ -88,51 +100,94 @@ class Response implements ResponseInterface
         599 => 'Network Connect Timeout Error',
     ];
 
+    /**
+     * @var array
+     */
     private $headers = [];
 
-
+    /**
+     * Response constructor.
+     * @param $body
+     * @param int $statusCode
+     */
     public function __construct($body, $statusCode = 200)
     {
         $this->body = $body;
         $this->statusCode = $statusCode;
     }
 
+    /**
+     * Emit response
+     * @return void
+     */
     public function emit(): void
     {
         $this->initAppHeader();
         echo $this->getBody();
     }
 
+    /**
+     * Get body
+     * @return String
+     */
     public function getBody(): String
     {
         return $this->body;
     }
 
+    /**
+     * Get status code
+     * @return Int
+     */
     public function getStatusCode(): Int
     {
         return $this->statusCode;
     }
 
+    /**
+     * Get reason phrase
+     * @return String
+     */
     public function getReasonPhrase(): String
     {
         return $this->reasonPhrase[$this->statusCode];
     }
 
+    /**
+     * Get header
+     * @param String $name
+     * @return mixed|null
+     */
     public function getHeader(String $name)
     {
         return (isset($this->headers[$name])) ? $this->headers[$name] : null;
     }
 
+    /**
+     * Get headers
+     * @return array
+     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
 
+    /**
+     * Has header
+     * @param $name
+     * @return bool
+     */
     public function hasHeader($name): bool
     {
         return (isset($this->headers[$name])) ? true : false;
     }
 
+    /**
+     * Set header
+     * @param String $name
+     * @param $value
+     * @return $this
+     */
     public function setHeader(String $name, $value): self
     {
         $new = clone $this;
@@ -143,6 +198,9 @@ class Response implements ResponseInterface
         return $new;
     }
 
+    /**
+     * Init headers response
+     */
     private function initAppHeader(): void
     {
         header('HTTP/1.1 ' . $this->getStatusCode() . ' ' . $this->getReasonPhrase());

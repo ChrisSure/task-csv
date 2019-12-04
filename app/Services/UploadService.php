@@ -10,11 +10,22 @@ namespace App\Services;
 
 use App\Entities\User;
 
-
+/**
+ * Class UploadService
+ * @package App\Services
+ */
 class UploadService
 {
+    /**
+     * @var string
+     */
     private $uploaddir;
 
+    /**
+     * Upload file
+     * @param array $file
+     * @throws \Exception
+     */
     public function upload(array $file): void
     {
         $this->uploaddir = 'uploads/';
@@ -26,6 +37,10 @@ class UploadService
         }
     }
 
+    /**
+     * Parse data
+     * @return array
+     */
     public function getParseData(): array
     {
         $arrayEntities = array();

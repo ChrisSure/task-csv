@@ -11,18 +11,45 @@ namespace App\Entities;
 
 class User
 {
+    /**
+     * @var int
+     */
     private $uid;
 
+    /**
+     * @var string
+     */
     private $firstName;
 
+    /**
+     * @var string
+     */
     private $lastName;
 
+    /**
+     * @var string
+     */
     private $description;
 
+    /**
+     * @var \DateTime
+     */
     private $birthDay;
 
+    /**
+     * @var \DateTime
+     */
     private $dayChange;
 
+    /**
+     * @param $uid
+     * @param $firstName
+     * @param $lastName
+     * @param $description
+     * @param $birthDay
+     * @param $dayChange
+     * @return $this
+     */
     public function fill($uid, $firstName, $lastName, $description, $birthDay, $dayChange): self
     {
         $this->uid = $uid;
@@ -35,36 +62,36 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getUid()
+    public function getUid(): int
     {
         return $this->uid;
     }
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

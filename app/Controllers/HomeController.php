@@ -14,12 +14,26 @@ use Base\Http\Controller;
 use Base\Http\RequestInterface;
 use Base\Http\Response;
 
-
+/**
+ * Class HomeController
+ * @package App\Controllers
+ */
 class HomeController extends Controller
 {
+    /**
+     * @var UploadService
+     */
     private $uploadService;
+
+    /**
+     * @var UserService
+     */
     private $userService;
 
+    /**
+     * HomeController constructor.
+     * @param RequestInterface $request
+     */
     public function __construct(RequestInterface $request)
     {
         parent::__construct($request);
@@ -28,6 +42,11 @@ class HomeController extends Controller
 
     }
 
+    /**
+     * Index action
+     * @return Response
+     * @throws \Throwable
+     */
     public function index(): Response
     {
         if ($this->request->getFiles()) {

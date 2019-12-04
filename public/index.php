@@ -14,7 +14,6 @@ use Base\Http\Request;
 use Base\Http\Application;
 use Base\Http\Router\Router;
 
-
 $routes = [
     '/' => ['controller' => 'App\Controllers\HomeController', 'action' => 'index']
 ];

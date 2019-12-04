@@ -14,12 +14,27 @@ use Base\Db\Pdo;
 use Base\Pattern\ServiceLocator\App;
 use Base\Pattern\ServiceLocator\ServiceLocator;
 
-
+/**
+ * Class Application
+ * @package Base\Http
+ */
 class Application
 {
+    /**
+     * @var Result
+     */
     private $result;
+
+    /**
+     * @var RequestInterface
+     */
     private $request;
 
+    /**
+     * Application constructor.
+     * @param RequestInterface $request
+     * @param Result $result
+     */
     public function __construct(RequestInterface $request, Result $result)
     {
         $this->result = $result;
@@ -27,6 +42,10 @@ class Application
         $this->setServiceLocator();
     }
 
+    /**
+     * Start controller
+     * @return \Base\Http\Response
+     */
     public function handle(): Response
     {
         $controller = $this->result->getController();
@@ -34,6 +53,9 @@ class Application
         return (new $controller($this->request))->$action();
     }
 
+    /**
+     * Set service locator
+     */
     private function setServiceLocator(): void
     {
         $pdo = new Pdo();

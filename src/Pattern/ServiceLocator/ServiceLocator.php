@@ -8,7 +8,10 @@
 
 namespace Base\Pattern\ServiceLocator;
 
-
+/**
+ * Class ServiceLocator
+ * @package Base\Pattern\ServiceLocator
+ */
 class ServiceLocator
 {
 

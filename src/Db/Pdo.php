@@ -8,11 +8,25 @@
 
 namespace Base\Db;
 
+/**
+ * Class Pdo
+ * @package Base\Db
+ */
 class Pdo
 {
+    /**
+     * @var string
+     */
     private $dsn = "mysql:host=service-mysql:3306;dbname=app";
+
+    /**
+     * @var \PDO
+     */
     private $connect;
 
+    /**
+     * Pdo constructor.
+     */
     public function __construct()
     {
         try{
@@ -23,11 +37,18 @@ class Pdo
         }
     }
 
+    /**
+     * Get pdo connection
+     * @return \PDO
+     */
     public function getConnect(): \PDO
     {
         return $this->connect;
     }
 
+    /**
+     * Create table users
+     */
     private function createTable(): void
     {
         $this->connect->query('CREATE TABLE users 

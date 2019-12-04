@@ -10,26 +10,47 @@ namespace App\Services;
 
 use App\Repositories\UserRepository;
 
-
+/**
+ * Class UserService
+ * @package App\Services
+ */
 class UserService
 {
+    /**
+     * @var UserRepository
+     */
     public $userRepository;
 
+    /**
+     * UserService constructor.
+     */
     public function __construct()
     {
         $this->userRepository = new UserRepository();
     }
 
+    /**
+     * Get statistic
+     * @return array
+     */
     public function getStatistic(): array
     {
         return $this->userRepository->statistic;
     }
 
+    /**
+     * Find all users
+     * @return array
+     */
     public function findAll(): array
     {
         return $this->userRepository->findAll();
     }
 
+    /**
+     * Save users
+     * @param array $users
+     */
     public function save(array $users) {
         $uidArray = [];
         foreach($users as $user) {

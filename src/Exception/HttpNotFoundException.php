@@ -8,7 +8,10 @@
 
 namespace Base\Exception;
 
-
+/**
+ * Class HttpNotFoundException
+ * @package Base\Exception
+ */
 class HttpNotFoundException  extends \Exception
 {
     public function __construct($message = '')
