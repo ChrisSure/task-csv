@@ -1,0 +1,33 @@
+version: '3'
+services:
+    ### Admin-panel
+    task-nginx:
+        build:
+            context: ./
+            dockerfile: ${PWD}/docker/nginx.docker
+        volumes:
+            - ./:/app
+        depends_on:
+            - task-php-fpm
+        ports:
+            - "7777:80"
+    task-php-fpm:
+        build:
+            context: ./
+            dockerfile: ${PWD}/docker/php-fpm.docker
+        volumes:
+            - ./:/app
+        depends_on:
+            - service-mysql
+    ### Database
+    service-mysql:
+        image: mysql:5.7
+        volumes:
+            - ${PWD}/storage/mysql:/var/lib/mysql
+        environment:
+            - "MYSQL_ROOT_PASSWORD=secret"
+            - "MYSQL_USER=app"
+            - "MYSQL_PASSWORD=secret"
+            - "MYSQL_DATABASE=app"
+        ports:
+            - "33061:3306"

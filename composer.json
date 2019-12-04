@@ -1,0 +1,22 @@
+{
+    "name": "kris-sure/task-csv",
+    "authors": [
+        {
+            "name": "Kris911",
+            "email": "kukuluak.taras@gmail.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Base\\": "src/",
+            "App\\": "app/",
+            "Tests\\": "tests/"
+        }
+    }
+}
