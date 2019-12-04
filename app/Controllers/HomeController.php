@@ -35,7 +35,7 @@ class HomeController extends Controller
             $this->userService->save($this->uploadService->getParseData());
         }
 
-
-        return new Response($this->template->render('home'));
+        $users = $this->userService->findAll();
+        return new Response($this->template->render('home', ['users' => $users]));
     }
 }

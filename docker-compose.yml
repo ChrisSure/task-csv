@@ -4,7 +4,7 @@ services:
     task-nginx:
         build:
             context: ./
-            dockerfile: ${PWD}/docker/nginx.docker
+            dockerfile: docker/nginx.docker
         volumes:
             - ./:/app
         depends_on:
@@ -14,7 +14,7 @@ services:
     task-php-fpm:
         build:
             context: ./
-            dockerfile: ${PWD}/docker/php-fpm.docker
+            dockerfile: docker/php-fpm.docker
         volumes:
             - ./:/app
         depends_on:
@@ -23,7 +23,7 @@ services:
     service-mysql:
         image: mysql:5.7
         volumes:
-            - ${PWD}/storage/mysql:/var/lib/mysql
+            - ./storage/mysql:/var/lib/mysql
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_USER=app"
