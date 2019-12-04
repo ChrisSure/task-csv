@@ -33,6 +33,8 @@ class HomeController extends Controller
         if ($this->request->getFiles()) {
             $this->uploadService->upload($this->request->getFiles());
             $this->userService->save($this->uploadService->getParseData());
+            $_SESSION['flash'] = $this->userService->getStatistic();
+            return $this->redirect();
         }
 
         $users = $this->userService->findAll();

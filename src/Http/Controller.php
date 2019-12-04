@@ -20,4 +20,9 @@ abstract class Controller
         $this->request = $request;
         $this->template = new PhpRenderer('templates');
     }
+
+    public function redirect(): void
+    {
+        header("Location: http://localhost:7777");
+    }
 }

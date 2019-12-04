@@ -6,6 +6,16 @@ $this->extend('layouts/base');
 
 
 <?php $this->startBlock('content'); ?>
+    <?php if (isset($_SESSION['flash'])): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        New - <?= $_SESSION['flash']['new'];?> |
+        Update - <?= $_SESSION['flash']['update'];?> |
+        Remove - <?= $_SESSION['flash']['remove'];?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php endif; ?>
     <form enctype="multipart/form-data" action="/" method="POST">
         <input name="userfile" type="file" />
         <input type="submit" value="Submit" />

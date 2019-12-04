@@ -20,15 +20,22 @@ class UserService
         $this->userRepository = new UserRepository();
     }
 
+    public function getStatistic(): array
+    {
+        return $this->userRepository->statistic;
+    }
+
     public function findAll(): array
     {
         return $this->userRepository->findAll();
     }
 
     public function save(array $users) {
+        $uidArray = [];
         foreach($users as $user) {
+            $uidArray[] = $user->getUid();
             $userDb = $this->userRepository->find($user->getUid());
-            if ($userDb) {
+            if ($userDb != null) {
                 if (strtotime($userDb->getDayChange() != strtotime($user->getDayChange()))) {
                     $this->userRepository->update[] = $user;
                 }
@@ -36,6 +43,7 @@ class UserService
                 $this->userRepository->new[] = $user;
             }
         }
+        $this->userRepository->remove($uidArray);
         $this->userRepository->save();
     }
 }

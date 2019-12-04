@@ -8,6 +8,7 @@
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
+session_start();
 
 use Base\Http\Request;
 use Base\Http\Application;

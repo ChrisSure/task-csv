@@ -23,13 +23,15 @@ class User
 
     private $dayChange;
 
-    public function fill($uid, $firstName, $lastName, $description, $birthDay, $dayChange) {
+    public function fill($uid, $firstName, $lastName, $description, $birthDay, $dayChange): self
+    {
         $this->uid = $uid;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->description = $description;
         $this->birthDay = $birthDay;
         $this->dayChange = $dayChange;
+        return $this;
     }
 
     /**
